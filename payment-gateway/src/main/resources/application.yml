@@ -1,0 +1,18 @@
+server:
+  port: 8084
+
+spring:
+
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: payment-gateway
+
+app-config:
+  services:
+    donations-api: http://172.28.12.93:8081
+
+  security:
+    jwt:
+      username: donor-user
+      secret-key: umlUZ92WEn4ROu0OUmV42Np+XMfPfWiHKx7oZNxkcErpON5tsBLxNMZLwaRrQ+c8cyPmt6RgaZ0tW2LZZDVhbQ==

@@ -1,0 +1,24 @@
+server:
+  port: 8086
+
+spring:
+
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+
+  application:
+    name: authorization-api
+
+app-config:
+  security:
+    jwt:
+      username: donor-user
+      password: ZG9Bw6fDo28xMjNAIQ
+      secret-key: umlUZ92WEn4ROu0OUmV42Np+XMfPfWiHKx7oZNxkcErpON5tsBLxNMZLwaRrQ+c8cyPmt6RgaZ0tW2LZZDVhbQ==
+
+  services:
+    donations-api: http://localhost:8081
+    front-end-web: http://localhost:3000
+    billet-api: http://localhost:8082
+    credit-card-api: http://localhost:8083

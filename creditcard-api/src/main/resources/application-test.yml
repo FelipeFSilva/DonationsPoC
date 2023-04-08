@@ -1,0 +1,60 @@
+spring:
+
+  main:
+    allow-circular-references: true
+
+  datasource:
+    url: jdbc:h2:mem:donation_test;MODE=MSSQLServer
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  flyway:
+    enabled: true
+    url: jdbc:h2:mem:donation_test;MODE=MSSQLServer;DB_CLOSE_DELAY=-1
+    user: sa
+    password:
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: user
+    password: Rabbit123!
+
+app-config:
+  services:
+    donations-api: http://localhost:8081
+    authorization-api: http://localhost:8086
+
+  rabbit:
+    exchange:
+      credit-card: credit-card.topic
+    routingKey:
+      credit-card: credit-card-donation.routingKey
+      credit-card-retry: credit-card-donation-retry.routingKey
+      credit-card-dlq: credit-card-donation-dlq.routingKey
+      credit-card-email: credit-card-email.routingKey
+    queue:
+      credit-card: credit-card-donation.queue
+      credit-card-retry: credit-card-donation-retry.queue
+      credit-card-dlq: credit-card-donation-dlq.queue
+      credit-card-email: credit-card-email.queue
+
+    retry-policy:
+      initial-interval: 1000
+      max-interval: 3000
+
+  security:
+    jwt:
+      username: donor-user
+      password: ZG9Bw6fDo28xMjNAIQ
+      secret-key: umlUZ92WEn4ROu0OUmV42Np+XMfPfWiHKx7oZNxkcErpON5tsBLxNMZLwaRrQ+c8cyPmt6RgaZ0tW2LZZDVhbQ==

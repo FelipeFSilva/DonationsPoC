@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+spring:
+
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: donations-api
+
+app-config:
+  services:
+    billet-api: http://172.28.12.93:8082
+    creditcard-api: http://172.28.12.93:8083
+    payment-gateway: http://172.28.12.93:8084
+
+  security:
+    jwt:
+      username: donor-user
+      secret-key: umlUZ92WEn4ROu0OUmV42Np+XMfPfWiHKx7oZNxkcErpON5tsBLxNMZLwaRrQ+c8cyPmt6RgaZ0tW2LZZDVhbQ==
