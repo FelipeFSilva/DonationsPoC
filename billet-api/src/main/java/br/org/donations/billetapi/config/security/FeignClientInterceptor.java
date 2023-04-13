@@ -3,6 +3,7 @@ package br.org.donations.billetapi.config.security;
 import br.org.donations.billetapi.service.JwtService;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
@@ -13,20 +14,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Component
 public class FeignClientInterceptor implements RequestInterceptor {
-
-    private static final String BEARER = "Bearer ";
-    private final JwtService jwtService;
-
-    @Value("${app-config.security.jwt.username}")
-    private String username;
-    @Value("${app-config.security.jwt.password}")
-    private String password;
-
-    public FeignClientInterceptor(JwtService jwtService) {
-        this.jwtService = jwtService;
-    }
 
     private static final Pattern BEARER_TOKEN_HEADER_PATTERN = Pattern.compile("^Bearer (?<token>[a-zA-Z0-9-._~+/]+=*)$",
             Pattern.CASE_INSENSITIVE);

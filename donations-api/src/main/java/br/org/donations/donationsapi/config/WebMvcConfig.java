@@ -17,7 +17,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/credit-card/validate")
+        registry.addMapping("/**")
                 .allowedOrigins(billetHost, creditCardHost)
                 .allowedHeaders(HttpHeaders.AUTHORIZATION)
                 .allowedMethods(HttpMethod.POST.name());
