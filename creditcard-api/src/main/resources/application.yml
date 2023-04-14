@@ -10,7 +10,7 @@ spring:
     name: creditcard-api
 
   datasource:
-    url: jdbc:sqlserver://172.28.12.93:1434;databaseName=creditcard_db;trustCertificate=true
+    url: jdbc:sqlserver://127.0.0.1:1434;databaseName=creditcard_db;trustCertificate=true
     username: sa
     password: Credt123456!
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -27,7 +27,7 @@ spring:
 
   flyway:
     enabled: true
-    url: jdbc:sqlserver://172.28.12.93:1434;databaseName=creditcard_db;trustCertificate=true
+    url: jdbc:sqlserver://127.0.0.1:1434;databaseName=creditcard_db;trustCertificate=true
     user: sa
     password: Credt123456!
 
@@ -40,9 +40,9 @@ spring:
 app-config:
 
   services:
-    donations-api: http://172.28.12.93:8081
-    front-end-web: http://172.28.12.93:3000
-    authorization-api: http://localhost:8086
+    donations-api: http://127.0.0.1:8081
+    front-end-web: http:/127.0.0.1:3000
+    authorization-api: http://127.0.0.1:8086
 
   rabbit:
     exchange:

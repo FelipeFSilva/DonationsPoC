@@ -10,9 +10,9 @@ spring:
 
 app-config:
   services:
-    billet-api: http://172.28.12.93:8082
-    creditcard-api: http://172.28.12.93:8083
-    payment-gateway: http://172.28.12.93:8084
+    billet-api: http://localhost:8082
+    creditcard-api: http://localhost:8083
+    payment-gateway: http://localhost:8084
 
   security:
     jwt:

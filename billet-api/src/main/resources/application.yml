@@ -5,7 +5,7 @@ spring:
   application:
     name: billet-api
   datasource:
-    url: jdbc:sqlserver://172.28.12.93:1433;databaseName=master;trustCertificate=true
+    url: jdbc:sqlserver://127.0.0.1:1433;databaseName=master;trustCertificate=true
     username: sa
     password: Billet123456!
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
