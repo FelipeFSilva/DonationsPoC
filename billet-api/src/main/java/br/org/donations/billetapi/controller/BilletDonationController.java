@@ -22,8 +22,13 @@ public class BilletDonationController {
     @PostMapping("send-donation")
     public ResponseEntity<String> createBilletDonation(@RequestBody @Valid BilletDonationDTO billetDonationDTO){
         log.info("Envio de doação por boleto iniciada");
-        billetDonationService.processBilletDonation(billetDonationDTO);
-        log.info("Envio de doação finalizado.");
+        try {
+            billetDonationService.processBilletDonation(billetDonationDTO);
+            log.info("Envio de doação finalizado.");
+        }catch (Exception e){
+            log.info(e.getMessage());
+            return ResponseEntity.internalServerError().body("Ocorreu um erro ao processar a doação!");
+        }
         return ResponseEntity.ok().body("Doação enviada com sucesso!");
     }
 }

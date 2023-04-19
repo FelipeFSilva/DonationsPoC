@@ -21,11 +21,16 @@ public class BilletDonationService {
     @Autowired
     private DTOMapper DTOmapper;
 
-    public Long processBilletDonation(BilletDonationDTO billetDonationDTO){
+    @Autowired
+    private EmailSenderService emailSenderService;
+
+    public Long processBilletDonation(BilletDonationDTO billetDonationDTO) throws InterruptedException {
         BilletDonationResponseDTO billetDonationResponseDTO = donationFeignClient.validateBilletDonation(billetDonationDTO);
         var donationToSave = DTOmapper.convertBilletDonationResponseDTOToDonationEntity(billetDonationResponseDTO);
         Donation savedDonation = billetDonationRepository.save(donationToSave);
         Long savedDonationId = savedDonation.getId();
+
+        emailSenderService.sendEmailToDonor(savedDonation.getDonor().getEmail());
 
         log.info("Doação salva com sucesso! Id: " + savedDonationId);
         return savedDonationId;

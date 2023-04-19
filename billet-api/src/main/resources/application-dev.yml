@@ -6,6 +6,17 @@ spring:
     allow-bean-definition-overriding: true
     allow-circular-references: true
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ffernandes286@gmail.com
+    password: xttgyprimbuagdrd
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   application:
     name: billet-api
 
