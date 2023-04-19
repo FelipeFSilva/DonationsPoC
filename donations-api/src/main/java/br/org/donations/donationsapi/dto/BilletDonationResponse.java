@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class BilletDonationResponse extends DonationResponse {
 
-    private String link;
+    private String linkBillet;
 
     public static BilletDonationResponse donationBilletDTOToDonationResponse(DonationBilletDTO donationBilletDTO, String link){
         LocalDateTime dateTimeNow = LocalDateTime.now();
@@ -25,7 +25,7 @@ public class BilletDonationResponse extends DonationResponse {
                 .createdAt(dateTimeNow)
                 .updatedAt(dateTimeNow)
                 .donor(DonorResponse.donorDTOToDonorResponse(donationBilletDTO.getDonor()))
-                .link(link)
+                .linkBillet(link)
                 .build();
     }
 }

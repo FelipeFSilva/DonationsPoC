@@ -32,6 +32,9 @@ public class BilletDonationResponseDTO {
     private LocalDateTime updatedAt;
 
     @NotNull
+    private String linkBillet;
+
+    @NotNull
     private DonorResponse donor;
 
 }

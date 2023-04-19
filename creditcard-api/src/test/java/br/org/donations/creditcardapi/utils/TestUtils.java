@@ -64,14 +64,6 @@ public class TestUtils {
                 .content(json);
     }
 
-    public static MockHttpServletRequestBuilder getSendDonationPostRequest(String json) {
-        return MockMvcRequestBuilders
-                .post(CREDIT_CARD_SEND_DONATION_URI)
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(json);
-    }
-
     public static MockHttpServletRequestBuilder getTokenRequestPost(String json) throws JsonProcessingException {
         return MockMvcRequestBuilders.post(TOKEN_URI)
                 .accept(MediaType.APPLICATION_JSON)

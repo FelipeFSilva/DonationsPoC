@@ -17,13 +17,14 @@ public class BilletDonationService {
     @Autowired
     private BilletDonationRepository billetDonationRepository;
     @Autowired
-    private DonationApiFeignClient billetDonatioFeignClient;
+    private DonationApiFeignClient donationFeignClient;
     @Autowired
     private DTOMapper DTOmapper;
 
     public Long processBilletDonation(BilletDonationDTO billetDonationDTO){
-        BilletDonationResponseDTO billetDonationResponseDTO = billetDonatioFeignClient.validateBilletDonation(billetDonationDTO);
-        Donation savedDonation = billetDonationRepository.save(DTOmapper.convertBilletDonationResponseDTOToDonationEntity(billetDonationResponseDTO));
+        BilletDonationResponseDTO billetDonationResponseDTO = donationFeignClient.validateBilletDonation(billetDonationDTO);
+        var donationToSave = DTOmapper.convertBilletDonationResponseDTOToDonationEntity(billetDonationResponseDTO);
+        Donation savedDonation = billetDonationRepository.save(donationToSave);
         Long savedDonationId = savedDonation.getId();
 
         log.info("Doação salva com sucesso! Id: " + savedDonationId);

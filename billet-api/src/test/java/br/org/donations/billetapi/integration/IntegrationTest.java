@@ -19,6 +19,5 @@ import java.lang.annotation.Target;
 @AutoConfigureMockMvc
 @ImportAutoConfiguration
 @ActiveProfiles("test")
-
 public @interface IntegrationTest {
 }

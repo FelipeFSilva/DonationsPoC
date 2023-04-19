@@ -12,7 +12,7 @@ public class DTOMapper {
     @Autowired
     private ModelMapper mapper;
 
-    public Donation convertBilletDonationResponseDTOToDonationEntity(BilletDonationResponseDTO donationToSaveDTO) {
-        return mapper.map(donationToSaveDTO, Donation.class);
+    public Donation convertBilletDonationResponseDTOToDonationEntity(BilletDonationResponseDTO billetDonationResponseDTO) {
+        return mapper.map(billetDonationResponseDTO, Donation.class);
     }
 }

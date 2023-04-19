@@ -3,6 +3,7 @@ package br.org.donations.billetapi.unit.controller;
 import br.org.donations.billetapi.controller.BilletDonationController;
 import br.org.donations.billetapi.dto.BilletDonationDTO;
 import br.org.donations.billetapi.service.BilletDonationService;
+import br.org.donations.billetapi.utils.TestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -38,17 +39,19 @@ public class BilletDonationControllerTest {
 
     private BilletDonationDTO billetDonationDTO;
 
+    private String token;
+
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws Exception {
+        token = TestUtils.generateToken();
         billetDonationDTO = createDonationInputDTO();
     }
 
     @Test
     @DisplayName("Deve enviar uma doação por boleto com sucesso")
     public void createDonationTest() throws Exception {
-
         String json = getJson(objectMapper, billetDonationDTO);
-        MockHttpServletRequestBuilder request = sendBilletDonationPostRequest(json);
+        MockHttpServletRequestBuilder request = getSendDonationPostRequestWithToken(json, token);
 
         mvc.perform(request)
                 .andExpect(status().isOk())

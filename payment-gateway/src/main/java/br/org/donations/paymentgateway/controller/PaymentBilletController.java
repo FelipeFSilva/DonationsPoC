@@ -20,9 +20,9 @@ public class PaymentBilletController {
 
     @PostMapping("validate-payment")
     public String paymentCreditCard(@RequestBody @Valid PaymentBilletDTO paymentBilletDTO){
-        log.info("Iniciando validação de pagamento por boleto.");
+        log.info("Iniciando pagamento por boleto.");
         String response = paymentBilletService.verifyPaymentBillet(paymentBilletDTO);
-        log.info("Validação de pagamento por boleto finalizada.");
+        log.info("Pagamento por boleto finalizada.");
         return response;
     }
 }
