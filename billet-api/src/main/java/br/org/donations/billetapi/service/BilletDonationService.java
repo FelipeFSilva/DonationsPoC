@@ -3,7 +3,7 @@ package br.org.donations.billetapi.service;
 
 import br.org.donations.billetapi.dto.BilletDonationDTO;
 import br.org.donations.billetapi.dto.BilletDonationResponseDTO;
-import br.org.donations.billetapi.feignclients.BilletApiFeignClient;
+import br.org.donations.billetapi.feignclients.DonationApiFeignClient;
 import br.org.donations.billetapi.mappers.DTOMapper;
 import br.org.donations.billetapi.model.Donation;
 import br.org.donations.billetapi.repository.BilletDonationRepository;
@@ -17,7 +17,7 @@ public class BilletDonationService {
     @Autowired
     private BilletDonationRepository billetDonationRepository;
     @Autowired
-    private BilletApiFeignClient billetDonatioFeignClient;
+    private DonationApiFeignClient billetDonatioFeignClient;
     @Autowired
     private DTOMapper DTOmapper;
 

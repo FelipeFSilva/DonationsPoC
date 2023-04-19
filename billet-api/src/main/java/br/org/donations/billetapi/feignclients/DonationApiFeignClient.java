@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
         contextId = "donations-api",
         url = "${app-config.services.donations-api}",
         path = "/billet")
-public interface BilletApiFeignClient {
+public interface DonationApiFeignClient {
     @PostMapping("/validate")
     BilletDonationResponseDTO validateBilletDonation(@RequestBody BilletDonationDTO donationDTO);
 }

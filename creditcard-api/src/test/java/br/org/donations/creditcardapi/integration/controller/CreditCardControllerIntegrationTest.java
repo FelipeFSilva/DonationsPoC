@@ -11,8 +11,11 @@ import br.org.donations.creditcardapi.rabbitmq.CreditCardDonationSender;
 import br.org.donations.creditcardapi.rabbitmq.EmailSender;
 import br.org.donations.creditcardapi.repository.DonationRepository;
 import br.org.donations.creditcardapi.service.CreditCardService;
+import br.org.donations.creditcardapi.utils.TestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.FeignException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
@@ -22,6 +25,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+
+import java.time.Instant;
 
 import static br.org.donations.creditcardapi.utils.TestUtils.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -68,17 +73,10 @@ public class CreditCardControllerIntegrationTest {
             rabbitAdmin.purgeQueue(CREDIT_CARD_DONATION_DLQ_QUEUE, true);
             rabbitAdmin.purgeQueue(CREDIT_CARD_EMAIL_QUEUE, true);
         }
-        token = generateToken();
+        token = TestUtils.generateToken();
     }
 
-    private String generateToken() throws Exception {
-        LoginRequest validLoginRequest = createValidLoginRequest();
-        String json = getTokenRequestJson(validLoginRequest);
-        return mvc.perform(getTokenRequestPost(json))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-    }
+
 
     @AfterEach
     public void tearDown() {

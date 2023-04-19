@@ -43,22 +43,6 @@ app-config:
     authorization-api: http://localhost:8086
     front-end-web: http://localhost:3000
 
-  rabbit:
-    exchange:
-      billet: billet.topic
-    routingKey:
-      billet: billet-donation.routingKey
-      billet-retry: billet-donation-retry.routingKey
-      billet-dlq: billet-donation-dlq.routingKey
-    queue:
-      billet: billet-donation.queue
-      billet-retry: billet-donation-retry.queue
-      billet-dlq: billet-donation-dlq.queue
-
-    retry-policy:
-      initial-interval: 4000
-      max-interval: 15000
-
   security:
     jwt:
       username: donor-user

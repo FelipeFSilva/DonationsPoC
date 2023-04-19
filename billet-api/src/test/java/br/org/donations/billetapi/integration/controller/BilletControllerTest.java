@@ -2,13 +2,12 @@ package br.org.donations.billetapi.integration.controller;
 
 import br.org.donations.billetapi.dto.BilletDonationDTO;
 import br.org.donations.billetapi.dto.BilletDonationResponseDTO;
-import br.org.donations.billetapi.feignclients.BilletApiFeignClient;
+import br.org.donations.billetapi.feignclients.DonationApiFeignClient;
 import br.org.donations.billetapi.integration.IntegrationTest;
 import br.org.donations.billetapi.utils.TestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -24,7 +23,7 @@ public class BilletControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private BilletApiFeignClient billetApiFeignClient;
+    private DonationApiFeignClient donationApiFeignClient;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -33,7 +32,7 @@ public class BilletControllerTest {
     @Test
     @DisplayName("Deve enviar uma doação por boleto com sucesso.")
     public void sendBilletDonationWithSuccessTest() throws Exception{
-        Mockito.when(billetApiFeignClient.validateBilletDonation(Mockito.any(BilletDonationDTO.class)))
+        Mockito.when(donationApiFeignClient.validateBilletDonation(Mockito.any(BilletDonationDTO.class)))
                 .thenReturn(Mockito.any(BilletDonationResponseDTO.class));
 
         BilletDonationDTO billetDonationDTO = TestUtils.createDonationInputDTO();
