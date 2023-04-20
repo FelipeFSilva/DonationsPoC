@@ -57,4 +57,15 @@ public class BilletDonationControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").value("Doação enviada com sucesso!"));
     }
+
+    @Test
+    @DisplayName("Deve recuperar todas as doações com sucesso")
+    public void getAllDonationsTest() throws Exception {
+        String json = getJson(objectMapper, billetDonationDTO);
+        MockHttpServletRequestBuilder request = getSendDonationGetRequestWithToken(json, token);
+
+        mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").value("Dados serão postados no webhook assim que possível"));
+    }
 }

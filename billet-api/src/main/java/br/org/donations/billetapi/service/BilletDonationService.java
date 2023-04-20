@@ -33,7 +33,7 @@ public class BilletDonationService {
 
     public Long processBilletDonation(BilletDonationDTO billetDonationDTO) throws InterruptedException {
         BilletDonationResponseDTO billetDonationResponseDTO = donationFeignClient.validateBilletDonation(billetDonationDTO);
-        var donationToSave = DTOmapper.convertBilletDonationResponseDTOToDonationEntity(billetDonationResponseDTO);
+        var donationToSave = DTOmapper.convertBilletDonationResponseDTOToDonation(billetDonationResponseDTO);
         Donation savedDonation = billetDonationRepository.save(donationToSave);
         Long savedDonationId = savedDonation.getId();
 
@@ -46,7 +46,7 @@ public class BilletDonationService {
     @Async
     public void getAllDonations(){
         log.info("Recuperando todas as doações de débito!");
-        List<BilletDonationResponseDTO> donations = DTOmapper.convertBilletDonationResponseDTOToDonationEntity(billetDonationRepository.findAll());
+        List<BilletDonationResponseDTO> donations = DTOmapper.convertDonationToBilletDonationResponseDTO(billetDonationRepository.findAll());
         webHookApiFeignClient.sendDataWebHook(donations);
         log.info("Finalizado post no webhook!");
     }

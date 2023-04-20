@@ -31,9 +31,9 @@ public class BilletDonationController {
 
     @GetMapping("get-donations")
     public ResponseEntity<String> getAllBilletDonations(){
-        log.info("Envio de doação por boleto iniciada");
+        log.info("Recuperação de doações por boleto iniciada");
         billetDonationService.getAllDonations();
-        log.info("Envio de doação finalizado.");
-        return ResponseEntity.ok().body("Dados serão postados no webhook assim que possível");
+        log.info("Recuperação de doações finalizado.");
+        return ResponseEntity.ok().body("Dados serão postados no webhook assim que possível!");
     }
 }

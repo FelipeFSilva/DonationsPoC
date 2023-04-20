@@ -23,6 +23,7 @@ import java.util.Date;
 public class TestUtils {
 
     private static String BILLET_SEND_DONATION_URI = "/billet/send-donation";
+    private static String BILLET_GET_DONATION_URI = "/billet/get-donations";
     public static final String TOKEN_URI = "/token";
     public static final String APPROVED = "APPROVED";
     public static final String EMAIL = "teste@email.com";
@@ -62,6 +63,15 @@ public class TestUtils {
     public static MockHttpServletRequestBuilder getSendDonationPostRequestWithToken(String json, String token) {
         return MockMvcRequestBuilders
                 .post(BILLET_SEND_DONATION_URI)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION, BEARER + token)
+                .content(json);
+    }
+
+    public static MockHttpServletRequestBuilder getSendDonationGetRequestWithToken(String json, String token) {
+        return MockMvcRequestBuilders
+                .get(BILLET_GET_DONATION_URI)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.AUTHORIZATION, BEARER + token)
