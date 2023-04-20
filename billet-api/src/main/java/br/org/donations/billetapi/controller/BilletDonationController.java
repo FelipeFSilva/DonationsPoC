@@ -6,10 +6,7 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j(topic = "BilletDonationService")
 @RestController
@@ -21,8 +18,8 @@ public class BilletDonationController {
 
     @PostMapping("send-donation")
     public ResponseEntity<String> createBilletDonation(@RequestBody @Valid BilletDonationDTO billetDonationDTO){
-        log.info("Envio de doação por boleto iniciada");
         try {
+            log.info("Envio de doação por boleto iniciada");
             billetDonationService.processBilletDonation(billetDonationDTO);
             log.info("Envio de doação finalizado.");
         }catch (Exception e){
@@ -30,5 +27,13 @@ public class BilletDonationController {
             return ResponseEntity.internalServerError().body("Ocorreu um erro ao processar a doação!");
         }
         return ResponseEntity.ok().body("Doação enviada com sucesso!");
+    }
+
+    @GetMapping("get-donations")
+    public ResponseEntity<String> getAllBilletDonations(){
+        log.info("Envio de doação por boleto iniciada");
+        billetDonationService.getAllDonations();
+        log.info("Envio de doação finalizado.");
+        return ResponseEntity.ok().body("Dados serão postados no webhook assim que possível");
     }
 }

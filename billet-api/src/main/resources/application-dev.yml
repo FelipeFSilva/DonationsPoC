@@ -1,6 +1,7 @@
 server:
   port: 8082
 
+
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -53,6 +54,7 @@ app-config:
     donations-api: http://localhost:8081
     authorization-api: http://localhost:8086
     front-end-web: http://localhost:3000
+    webhook: https://webhook.site/adfdaa1f-d5d6-4e3b-9876-9ee697d9f307
 
   security:
     jwt:
